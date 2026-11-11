@@ -1,0 +1,27 @@
+<h2>Shop</h2>
+
+<input type="text" placeholder="Cerca una paperella..." (input)="onSearch($event)" />
+
+<div>
+  @for (cat of categories; track cat) {
+    <button (click)="selected.set(cat)" [class.active]="selected() === cat">{{ cat }}</button>
+  }
+</div>
+
+@if (ducks().length === 0) {
+  <p>Nessuna paperella trovata 🦆</p>
+}
+
+<section>
+  @for (duck of ducks(); track duck.id) {
+    <article>
+      <img [src]="duck.image" [alt]="duck.name" />
+      <h3>{{ duck.name }}</h3>
+      <p>{{ duck.price | currency: 'EUR' }}</p>
+      <a [routerLink]="['/shop', duck.id]">Dettagli</a>
+      <button (click)="addToCart(duck)" [disabled]="!duck.inStock">
+        {{ duck.inStock ? 'Aggiungi al carrello' : 'Esaurita' }}
+      </button>
+    </article>
+  }
+</section>

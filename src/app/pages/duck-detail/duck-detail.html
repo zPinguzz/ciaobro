@@ -1,0 +1,15 @@
+@if (duck(); as d) {
+  <article>
+    <img [src]="d.image" [alt]="d.name" />
+    <h2>{{ d.name }}</h2>
+    <p>{{ d.description }}</p>
+    <p>Categoria: {{ d.category }}</p>
+    <p>{{ d.price | currency: 'EUR' }}</p>
+    <button (click)="addToCart()" [disabled]="!d.inStock">
+      {{ d.inStock ? 'Aggiungi al carrello' : 'Esaurita' }}
+    </button>
+  </article>
+} @else {
+  <p>Paperella non trovata.</p>
+}
+<a routerLink="/shop">← Torna allo shop</a>

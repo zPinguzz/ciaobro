@@ -1,0 +1,17 @@
+<section>
+  <h2>Benvenuto nel Duck Shop!</h2>
+  <p>Le paperelle più allegre del web.</p>
+  <a routerLink="/shop">Vai allo shop</a>
+</section>
+
+<section>
+  <h3>In evidenza</h3>
+  @for (duck of featured; track duck.id) {
+    <article>
+      <img [src]="duck.image" [alt]="duck.name" />
+      <h4>{{ duck.name }}</h4>
+      <p>{{ duck.price | currency: 'EUR' }}</p>
+      <a [routerLink]="['/shop', duck.id]">Dettagli</a>
+    </article>
+  }
+</section>

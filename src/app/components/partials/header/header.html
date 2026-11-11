@@ -1,0 +1,9 @@
+<header>
+  <a routerLink="/"><h1>🦆 Duck Shop</h1></a>
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/shop" routerLinkActive="active">Shop</a>
+    <a routerLink="/about" routerLinkActive="active">About</a>
+    <a routerLink="/cart" routerLinkActive="active">Carrello ({{ $any(cart).count() }})</a>
+  </nav>
+</header>

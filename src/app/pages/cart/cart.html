@@ -1,0 +1,31 @@
+<h2>Carrello</h2>
+
+@if (cart.items().length === 0) {
+  <p>Il carrello è vuoto.</p>
+  <a routerLink="/shop">Vai allo shop</a>
+} @else {
+  <table>
+    <thead>
+      <tr><th>Prodotto</th><th>Prezzo</th><th>Quantità</th><th>Subtotale</th><th></th></tr>
+    </thead>
+    <tbody>
+      @for (item of cart.items(); track item.duck.id) {
+        <tr>
+          <td>{{ item.duck.name }}</td>
+          <td>{{ item.duck.price | currency: 'EUR' }}</td>
+          <td>
+            <button (click)="cart.setQuantity(item.duck.id, item.quantity - 1)">−</button>
+            {{ item.quantity }}
+            <button (click)="cart.setQuantity(item.duck.id, item.quantity + 1)">+</button>
+          </td>
+          <td>{{ item.duck.price * item.quantity | currency: 'EUR' }}</td>
+          <td><button (click)="cart.remove(item.duck.id)">Rimuovi</button></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <p><strong>Totale: {{ cart.total() | currency: 'EUR' }}</strong></p>
+  <button (click)="cart.clear()">Svuota</button>
+  <button>Checkout</button>
+}
